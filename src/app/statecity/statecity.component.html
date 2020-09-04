@@ -1,0 +1,19 @@
+<h1 style="color:green">Hello country/ state/ cities::</h1>
+
+<div style="text-align:center;margin-top:50px;margin-bottom:50px">
+ 
+  <select (change)="countryChange($event)" >
+    <option>Select</option>
+    <option *ngFor="let c of countries" [ngValue]="c.country">{{ c.country }}</option>
+  </select>
+
+  <select (change)="statesChange($event)">
+    <option>Select</option>
+    <option *ngFor='let state of states' [ngValue]="state.name">{{ state.name }}</option>
+  </select>
+
+  <select >
+    <option>Select</option>
+    <option *ngFor='let city of cities' [ngValue]="city">{{ city }}</option>
+  </select>
+</div>

@@ -1,0 +1,52 @@
+<h1 style="color:green">Angular service calls get put post and delete::</h1>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="form-group">
+  <div class="col-md-6" style="text-align:center;margin-bottom:30px">
+      Filter by Name: 
+      <input type="text" [(ngModel)]="searchdatas" 
+             class="form-control" placeholder="Search By Name" />
+  </div>
+</div>
+<br/>
+
+<div class="container">
+  <table class="table" border="1" style="text-align:center">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let x of result | filter:{name: searchdatas, designation:searchdatas,  email:searchdatas}">
+        <th>{{x.id}}</th>
+        <td>{{x.name}}</td>
+        <td>{{x.designation}}</td>
+        <td>{{x.email}}</td>
+        <td>  <input type="button" value="edit" (click)="editrecord(x.id)"></td>&nbsp;&nbsp;&nbsp;&nbsp;
+        <td>  <input type="button" value="delete"(click)="deleterecord(x.id)"></td>&nbsp;&nbsp;&nbsp;&nbsp;
+       </tr>
+    </tbody>
+  </table>
+  
+  <br><br>
+  
+  <div *ngIf="editmsg">
+    Name:<input type="text" [(ngModel)]="editmsg.name"><br><br>
+    Designation:<input type="text" [(ngModel)]="editmsg.designation"><br><br>
+    Email:<input type="text" [(ngModel)]="editmsg.email"><br><br>
+    <input type="hidden" [(ngModel)]="editmsg.id"><br><br>
+  
+    <button (click)="postrecord({'name':editmsg.name,'designation':editmsg.designation,'email':editmsg.email})">add record</button>
+    <button (click)="putrecord({'name':editmsg.name,'designation':editmsg.designation,'email':editmsg.email,'id':editmsg.id})">update record</button>
+  </div>
+  
+  <p style="text-align:center;color:crimson">{{msg}}</p>
+  
+  </div>
